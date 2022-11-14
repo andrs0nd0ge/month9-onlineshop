@@ -5,22 +5,24 @@ import com.example.homework.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController("/category")
+@RestController
+@RequestMapping(value = "/category")
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @GetMapping("/{id}")
+    @GetMapping("id/{id}")
     public Optional<Category> getCategoryById(@PathVariable Long id) {
         return this.categoryService.getById(id);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("name/{name}")
     public List<Category> getCategoryByName(@PathVariable String name) {
         return this.categoryService.getByNamePattern(name);
     }

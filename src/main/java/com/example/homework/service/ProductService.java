@@ -30,11 +30,11 @@ public class ProductService {
     }
 
     public List<Product> getProductsByBrandName(Long brandId) {
-        return this.productRepository.findProductsByBrand_IdContainingIgnoreCase(brandId);
+        return this.productRepository.findProductsByBrand_Id(brandId);
     }
 
     public List<Product> getProductsByCategoryName(Long categoryId) {
-        return this.productRepository.findProductsByCategory_IdContainingIgnoreCase(categoryId);
+        return this.productRepository.findProductsByCategory_Id(categoryId);
     }
 
     public List<Product> getProductsByPriceRange(BigDecimal lower, BigDecimal upper) {

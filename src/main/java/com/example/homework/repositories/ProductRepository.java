@@ -13,8 +13,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
             "where p.name like (:pattern) or " +
             "p.description like (:pattern)")
     List<Product> searchProductsByNameOrDescription(@Param("pattern") String pattern);
-    List<Product> findProductsByBrand_IdContainingIgnoreCase(Long brandId);
-    List<Product> findProductsByCategory_IdContainingIgnoreCase(Long categoryId);
+    List<Product> findProductsByBrand_Id(Long brandId);
+    List<Product> findProductsByCategory_Id(Long categoryId);
     @Query("select p from Product as p " +
             "where p.price between (:lower) and (:upper)")
     List<Product> searchProductsByPriceRangeOrderByPriceAsc(@Param("lower") BigDecimal lower, @Param("upper") BigDecimal upper);

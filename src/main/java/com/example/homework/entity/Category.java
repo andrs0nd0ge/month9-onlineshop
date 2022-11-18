@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class Category {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     @ToString.Exclude
-    private List<Product> products;
+    private List<Product> products  = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

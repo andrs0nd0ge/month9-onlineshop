@@ -22,7 +22,6 @@ public class Basket {
     private Long id;
 
     @OneToMany
-    @JoinColumn()
     @ToString.Exclude
     private List<BasketProduct> basketProducts = new ArrayList<>();
 

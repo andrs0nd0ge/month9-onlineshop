@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @ControllerAdvice(annotations = RestController.class)
-public class NotFoundNameHandler {
+public class NameNotFoundHandler {
 
     @ExceptionHandler(NameFoundationException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

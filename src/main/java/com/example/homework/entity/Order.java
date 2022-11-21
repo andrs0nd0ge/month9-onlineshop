@@ -4,36 +4,35 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 @Entity
-@Table(name = "baskets")
-public class Basket {
+@Table(name = "orders")
+@RequiredArgsConstructor
+public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "basket")
-    private List<BasketProduct> basketProducts;
-
-    @ManyToOne
-    private User user;
-
-    @ManyToMany
-    @JoinTable(name = "basket_products",
-    joinColumns = @JoinColumn(name = "order_id"),
-    inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private List<Product> products;
+
+    @Column
+    @NotNull
+    private LocalDateTime date;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Basket basket = (Basket) o;
-        return id != null && Objects.equals(id, basket.id);
+        Order order = (Order) o;
+        return id != null && Objects.equals(id, order.id);
     }
 
     @Override

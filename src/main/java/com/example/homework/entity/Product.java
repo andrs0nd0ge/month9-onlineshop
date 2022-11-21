@@ -4,12 +4,12 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name = "products")
@@ -19,13 +19,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     private String name;
 
-    @Column(nullable = false)
+    @Column
+    @PositiveOrZero
     private BigDecimal price;
 
     @Column(name = "qty")
+    @PositiveOrZero
     private BigDecimal quantity;
 
     @Column
@@ -41,6 +44,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Order order;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Basket> baskets;
 
     @Override
     public boolean equals(Object o) {

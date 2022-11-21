@@ -1,9 +1,6 @@
 package com.example.homework.entity;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -11,11 +8,9 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,8 +21,7 @@ public class User {
     private String email;
 
     @Column
-    @Min(8)
-    @Max(24)
+    @Size(min = 8, max = 24)
     @NotEmpty
     private String password;
 

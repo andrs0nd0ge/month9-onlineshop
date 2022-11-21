@@ -4,13 +4,13 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name = "categories")
@@ -20,11 +20,12 @@ public class Category {
     private Long id;
 
     @Column
+    @NotEmpty
+    @Size(max = 50)
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-    @ToString.Exclude
-    private List<Product> products  = new ArrayList<>();
+    private List<Product> products;
 
     @Override
     public boolean equals(Object o) {

@@ -17,6 +17,7 @@ import java.util.Objects;
 public class Order {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

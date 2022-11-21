@@ -16,6 +16,7 @@ import java.util.*;
 public class Product {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
     @Query("SELECT c from Category as c " +
-            "where c.name like (:pattern)")
-    List<Category> searchCategoriesByName(@Param("pattern") String pattern);
+            "where lower(c.name) like concat('%', lower(:pattern), '%')")
+    List<Category> searchCategoriesByNameIgnoreCase(@Param("pattern") String pattern);
 }

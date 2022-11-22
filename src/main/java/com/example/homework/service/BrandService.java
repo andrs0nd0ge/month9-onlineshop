@@ -18,6 +18,6 @@ public class BrandService {
     }
 
     public List<Brand> getByNamePattern(String pattern) {
-        return this.brandRepository.searchBrandsByName(pattern);
+        return brandRepository.searchBrandsByName(pattern);
     }
 }

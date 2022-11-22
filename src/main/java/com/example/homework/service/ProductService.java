@@ -22,11 +22,11 @@ public class ProductService {
         return this.productRepository.searchProductsByNameOrDescription(pattern);
     }
 
-    public List<Product> getAllProductsByPriceAscending(BigDecimal price) {
-        return this.productRepository.findAllByPriceOrderByPriceAsc(price);
+    public List<Product> getAllProductsByPriceAscending() {
+        return this.productRepository.findAllOrderByPriceAsc();
     }
-    public List<Product> getAllProductsByPriceDescending(BigDecimal price) {
-        return this.productRepository.findAllByPriceOrderByPriceDesc(price);
+    public List<Product> getAllProductsByPriceDescending() {
+        return this.productRepository.findAllOrderByPriceDesc();
     }
 
     public List<Product> getProductsByBrandName(Long brandId) {
@@ -38,6 +38,6 @@ public class ProductService {
     }
 
     public List<Product> getProductsByPriceRange(BigDecimal lower, BigDecimal upper) {
-        return this.productRepository.searchProductsByPriceRangeOrderByPriceAsc(lower, upper);
+        return this.productRepository.searchProductsByPriceRange(lower, upper);
     }
 }

@@ -10,14 +10,20 @@ import java.util.List;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query("SELECT p from Product as p " +
-            "where p.name like (:pattern) or " +
-            "p.description like (:pattern)")
+            "where lower(p.name) like concat('%', lower(:pattern), '%') or " +
+            "lower(p.description) like concat('%', lower(:pattern), '%')")
     List<Product> searchProductsByNameOrDescription(@Param("pattern") String pattern);
     List<Product> findProductsByBrand_Id(Long brandId);
     List<Product> findProductsByCategory_Id(Long categoryId);
     @Query("select p from Product as p " +
-            "where p.price between (:lower) and (:upper)")
-    List<Product> searchProductsByPriceRangeOrderByPriceAsc(@Param("lower") BigDecimal lower, @Param("upper") BigDecimal upper);
-    List<Product> findAllByPriceOrderByPriceAsc(BigDecimal price);
-    List<Product> findAllByPriceOrderByPriceDesc(BigDecimal price);
+            "where p.price between (:lower) and (:upper)" +
+            "order by p.price asc")
+    List<Product> searchProductsByPriceRange(@Param("lower") BigDecimal lower, @Param("upper") BigDecimal upper);
+    @Query("select p from Product as p " +
+            "order by p.price asc")
+    List<Product> findAllOrderByPriceAsc();
+
+    @Query("select p from Product as p " +
+            "order by p.price desc")
+    List<Product> findAllOrderByPriceDesc();
 }

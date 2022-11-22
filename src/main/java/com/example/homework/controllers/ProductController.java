@@ -22,7 +22,7 @@ public class ProductController {
         return this.productService.getById(id);
     }
 
-    @GetMapping("pattern/{pattern}")
+    @GetMapping("name/{pattern}")
     public List<Product> getProductByName(@PathVariable String pattern) {
         return this.productService.getProductsByPattern(pattern);
     }
@@ -43,13 +43,13 @@ public class ProductController {
         return this.productService.getProductsByPriceRange(lower, upper);
     }
 
-    @GetMapping("order_asc/{price}")
-    public List<Product> getProductsByPriceOrderAsc(@PathVariable BigDecimal price){
-        return this.productService.getAllProductsByPriceAscending(price);
+    @GetMapping("order_asc")
+    public List<Product> getProductsByPriceOrderAsc(){
+        return this.productService.getAllProductsByPriceAscending();
     }
 
-    @GetMapping("order_desc/{price}")
-    public List<Product> getProductsByPriceOrderDesc(@PathVariable BigDecimal price) {
-        return this.productService.getAllProductsByPriceDescending(price);
+    @GetMapping("order_desc")
+    public List<Product> getProductsByPriceOrderDesc() {
+        return this.productService.getAllProductsByPriceDescending();
     }
 }

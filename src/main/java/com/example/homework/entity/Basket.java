@@ -1,5 +1,6 @@
 package com.example.homework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -21,6 +22,7 @@ public class Basket {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "basket")
     private List<BasketProduct> basketProducts;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

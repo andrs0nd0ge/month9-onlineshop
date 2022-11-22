@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface BrandRepository extends CrudRepository<Brand, Long> {
     @Query("SELECT b from Brand as b " +
-            "where b.name like (:pattern)")
+            "where lower(b.name) like concat('%', lower(:pattern), '%')")
     List<Brand> searchBrandsByName(@Param("pattern") String pattern);
 }

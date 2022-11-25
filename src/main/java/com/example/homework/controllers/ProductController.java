@@ -5,6 +5,8 @@ import com.example.homework.entity.Category;
 import com.example.homework.entity.Product;
 import com.example.homework.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -19,22 +21,24 @@ public class ProductController {
 
     @GetMapping("id/{id}")
     public Optional<Product> getProductById(@PathVariable Long id) {
-        return this.productService.getById(id);
+        return productService.getById(id);
     }
 
-    @GetMapping("name/{pattern}")
-    public List<Product> getProductByName(@PathVariable String pattern) {
-        return this.productService.getProductsByPattern(pattern);
+    @GetMapping("name")
+    public Page<Product> getProductByName(@RequestParam String pattern,
+                                          @RequestParam Optional<Integer> page) {
+        pattern += "";
+        return productService.getProductsByPattern(pattern, PageRequest.of(page.orElse(0), 5));
     }
 
     @GetMapping("brand/{brand}")
     public List<Product> getProductsByBrands(@PathVariable Brand brand) {
-        return this.productService.getProductsByBrandName(brand.getId());
+        return productService.getProductsByBrandName(brand.getId());
     }
 
     @GetMapping("category/{category}")
     public List<Product> getProductsByCategories(@PathVariable Category category){
-        return this.productService.getProductsByCategoryName(category.getId());
+        return productService.getProductsByCategoryName(category.getId());
     }
 
     @GetMapping("price_range")
@@ -45,11 +49,11 @@ public class ProductController {
 
     @GetMapping("order_asc")
     public List<Product> getProductsByPriceOrderAsc(){
-        return this.productService.getAllProductsByPriceAscending();
+        return productService.getAllProductsByPriceAscending();
     }
 
     @GetMapping("order_desc")
     public List<Product> getProductsByPriceOrderDesc() {
-        return this.productService.getAllProductsByPriceDescending();
+        return productService.getAllProductsByPriceDescending();
     }
 }

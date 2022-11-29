@@ -18,6 +18,6 @@ public class CategoryService {
     }
 
     public List<Category> getByNamePattern(String pattern) {
-        return this.categoryRepository.searchCategoriesByNameIgnoreCase(pattern);
+        return this.categoryRepository.searchCategoriesByName(pattern);
     }
 }

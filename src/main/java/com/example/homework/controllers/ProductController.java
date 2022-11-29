@@ -31,6 +31,12 @@ public class ProductController {
         return productService.getProductsByPattern(pattern, PageRequest.of(page.orElse(0), 5));
     }
 
+//    @GetMapping("/test")
+//    public String some(Model model){
+//        model.addAttribute("products", List<Product> products);
+//        return "login";
+//    }
+
     @GetMapping("brand/{brand}")
     public List<Product> getProductsByBrands(@PathVariable Brand brand) {
         return productService.getProductsByBrandName(brand.getId());

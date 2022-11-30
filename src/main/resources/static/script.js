@@ -49,18 +49,11 @@ function getCards(value) {
                     <div class="card-body">
                         <h5 class="card-title text-center">${e.name}</h5>
                     </div>
+                    <input type="hidden" name="productId" value="${e.id}">
                 </div>
             `;
             div.append(card);
         })
-        console.log('doneeeee');
-        
-        // if(currentPage >= response.data.totalPages) {
-        //     nextButton.style.display = 'none';
-        // }
-        // else if(currentPage <= 0){
-        //     prevButton.style.display = 'none';
-        // }
     })
     .catch(function (error) {
         console.log(error);

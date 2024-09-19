@@ -33,11 +33,11 @@ create table if not exists online_shop.products
     brand_id    bigint
     constraint products_brand_fk
     references online_shop.brands(id)
-    on update cascade on delete cascade,
+    on update cascade on delete set null,
     category_id bigint
     constraint products_category_fk
     references online_shop.categories(id)
-    on update cascade on delete cascade
+    on update cascade on delete set null
 );
 
 create index if not exists product_name_ix on online_shop.products (name);

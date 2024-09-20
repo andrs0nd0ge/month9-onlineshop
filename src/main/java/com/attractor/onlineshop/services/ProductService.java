@@ -20,7 +20,7 @@ public class ProductService extends GenericService {
     }
 
     public List<Product> findByDescription(String description) {
-        return repository.findByName(description);
+        return repository.findByDescription(description);
     }
 
     public List<Product> findByPrice(BigDecimal price) {

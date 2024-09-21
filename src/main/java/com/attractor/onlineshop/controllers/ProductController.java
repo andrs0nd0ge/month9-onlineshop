@@ -20,16 +20,20 @@ public class ProductController {
         this.service = service;
     }
 
-    @GetMapping(params = "name")
-    public ResponseEntity<List<Product>> findByName(@RequestParam String name) {
-        List<Product> products = service.findByName(name);
+    @GetMapping(params = {"page", "size", "name"})
+    public ResponseEntity<List<Product>> findByName(@RequestParam int page,
+                                                    @RequestParam int pageSize,
+                                                    @RequestParam String name) {
+        List<Product> products = service.findByName(page, pageSize, name);
 
         return service.returnResponseForList(products);
     }
 
-    @GetMapping(params = "desc")
-    public ResponseEntity<List<Product>> findByDescription(@RequestParam String description) {
-        List<Product> products = service.findByDescription(description);
+    @GetMapping(params = {"page", "size", "desc"})
+    public ResponseEntity<List<Product>> findByDescription(@RequestParam int page,
+                                                           @RequestParam int pageSize,
+                                                           @RequestParam String description) {
+        List<Product> products = service.findByDescription(page, pageSize, description);
 
         return service.returnResponseForList(products);
     }
@@ -49,16 +53,20 @@ public class ProductController {
         return service.returnResponseForList(products);
     }
 
-    @GetMapping(params = "brand")
-    public ResponseEntity<List<Product>> findByBrandName(@RequestParam String brandName) {
-        List<Product> products = service.findByBrandName(brandName);
+    @GetMapping(params = {"page", "size", "brand"})
+    public ResponseEntity<List<Product>> findByBrandName(@RequestParam int page,
+                                                         @RequestParam int pageSize,
+                                                         @RequestParam String brandName) {
+        List<Product> products = service.findByBrandName(page, pageSize, brandName);
 
         return service.returnResponseForList(products);
     }
 
-    @GetMapping(params = "category")
-    public ResponseEntity<List<Product>> findByCategoryName(@RequestParam String categoryName) {
-        List<Product> products = service.findByCategoryName(categoryName);
+    @GetMapping(params = {"page", "size", "category"})
+    public ResponseEntity<List<Product>> findByCategoryName(@RequestParam int page,
+                                                            @RequestParam int pageSize,
+                                                            @RequestParam String categoryName) {
+        List<Product> products = service.findByCategoryName(page, pageSize, categoryName);
 
         return service.returnResponseForList(products);
     }

@@ -2,6 +2,9 @@ package com.attractor.onlineshop.services;
 
 import com.attractor.onlineshop.entities.Product;
 import com.attractor.onlineshop.repositories.ProductRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,12 +18,24 @@ public class ProductService extends GenericService {
         this.repository = repository;
     }
 
-    public List<Product> findByName(String name) {
-        return repository.findByName(name);
+    public List<Product> findByName(int page, int size, String name) {
+        Sort sort = Sort.by(
+                Sort.Order.asc(name)
+        );
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return repository.findByName(name, pageable);
     }
 
-    public List<Product> findByDescription(String description) {
-        return repository.findByDescription(description);
+    public List<Product> findByDescription(int page, int size, String description) {
+        Sort sort = Sort.by(
+                Sort.Order.asc(description)
+        );
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return repository.findByDescription(description, pageable);
     }
 
     public List<Product> findByPrice(BigDecimal price) {
@@ -31,11 +46,23 @@ public class ProductService extends GenericService {
         return repository.findByPriceBetween(lower, upper);
     }
 
-    public List<Product> findByBrandName(String brandName) {
-        return repository.findByBrandName(brandName);
+    public List<Product> findByBrandName(int page, int size, String brandName) {
+        Sort sort = Sort.by(
+                Sort.Order.asc(brandName)
+        );
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return repository.findByBrandName(brandName, pageable);
     }
 
-    public List<Product> findByCategoryName(String categoryName) {
-        return repository.findByCategoryName(categoryName);
+    public List<Product> findByCategoryName(int page, int size, String categoryName) {
+        Sort sort = Sort.by(
+                Sort.Order.asc(categoryName)
+        );
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return repository.findByCategoryName(categoryName, pageable);
     }
 }
